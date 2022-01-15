@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+.container {
+	color: #fff;
+	text-align: center;
+	font-family: "Poppins";
+	justify-content: center;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 20px;
+	align-items: center;
+}
+
+.mBtn {
+	background: #e05100;
+	/* box-shadow: 2px 0px 100px rgba(255, 61, 0, 0.47); */
+	border-radius: 30px;
+	border: none;
+	border: 2px solid #e05100;
+	color: #fff;
+	padding: 16px 40px;
+	font-size: 30px;
+	margin-top: 40px;
+}
+
+.mBtn:hover {
+	cursor: pointer;
+	color: #fff;
+	background-color: #2b2b2b;
+	border: 2px solid #e05100;
+}
+
+.imgCon {
+	margin-top: -100px;
+}
+
+.mTitle {
+	font-size: 70px;
+}
+
+.sDesc {
+	color: #969696;
+	font-size: 30px;
+	margin-top: -40px;
+}
+
+.mDesc {
+	margin-top: -50px;
+	font-size: 16px;
+	padding: 16px 32px;
+	word-wrap: break-word;
+}
+
+.readMore {
+	color: #e05100;
+	text-shadow: 0px 0px 50px #ff0f00;
+	font-size: 40px;
+}
+
+.readMore a {
+	text-decoration: none;
+	color: #e05100;
+}
+
+.readMore a:hover {
+	text-decoration: none;
+	color: rgb(172, 157, 157);
+}
+
+.leftS {
+	margin-top: -100px;
+}
+
+.rightS {
+	background: linear-gradient(
+		109.36deg,
+		rgba(62, 62, 62, 0.38) 2.85%,
+		rgba(0, 0, 0, 0) 92.06%
+	);
+	border-radius: 35% 0 0 35%;
+	padding: 30px 20px;
+	margin-top: -75px;
+	padding-top: -20px;
+}
+
+.s2Title {
+	color: rgb(224, 95, 35);
+	font-size: 50px;
+}
+
+.s2Desc {
+	color: #929090;
+	font-size: 20px;
+	padding: 10px 100px;
+}
+
+.leftC {
+	background-color: #181818;
+	box-shadow: 0px 0px 100px rgba(255, 46, 0, 0.51);
+	border-radius: 202px 433px 433px 0px;
+	padding: 40px 16px;
+	/* margin-left: -20px; */
+	height: 400px;
+	margin-top: 90px;
+}
+
+.finalRow {
+	/* display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px; */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	column-gap: 20px;
+	height: 100%;
+	margin: 0 40px 20px 40px;
+}
+
+.card {
+	border: 2px solid #ff3d00;
+	border-radius: 20px;
+	box-sizing: border-box;
+}
+
+.cTitle {
+	color: #e05100;
+	border-bottom: 2px solid #e05100;
+	font-size: 30px;
+}
+
+.cDesc {
+	color: #7a7979;
+	padding: 16px 12px;
+	margin: 0 0;
+	margin-top: -20px;
+	font-size: 14px;
+}
+
+.mCon {
+	padding: 16px 18px;
+	margin: 0 0;
+	margin-top: -15px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/* Maybe Laptop */
+/* @media only screen and (max-width: 1024px) {
+    body {
+      background-color: green;
+    }
+  
+    .imgCon {
+      width: 50%;
+    }
+  } */
+
+/* Tablet View */
+@media only screen and (max-width: 768px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	.finalRow {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		text-align: center;
+	}
+
+	.card {
+		margin: 0 30px;
+		margin-bottom: 20px;
+	}
+
+	.imgCon {
+		width: 75%;
+	}
+
+	.s2Title {
+		font-size: 30px;
+		margin: auto;
+	}
+
+	.s2Desc {
+		font-size: 16px;
+		margin-top: 0;
+		margin-left: 0;
+	}
+
+	.leftC {
+		margin-left: -50px;
+		height: 270px;
+		margin-right: 20px;
+	}
+
+	.readMore {
+		font-size: 30px;
+		margin-top: 2px;
+	}
+
+	.mTitle {
+		font-size: 45px;
+		margin-top: -70px;
+	}
+
+	.mDesc {
+		font-size: 16px;
+		margin-top: -30px;
+	}
+
+	.sDesc {
+		font-size: 18px;
+		margin-top: -30px;
+	}
+
+	.mBtn {
+		font-size: 16px;
+		padding: 14px 12px;
+		margin-bottom: 60px;
+	}
+
+	.rightS {
+		margin-top: -20px;
+	}
+
+	.rightS .imgCon {
+		margin-top: -50px;
+		width: 60%;
+	}
+}
+
+/* Mobile Code */
+@media only screen and (max-width: 600px) {
+	.row {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	.finalRow {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		text-align: center;
+	}
+
+	.card {
+		margin-bottom: 20px;
+	}
+
+	.imgCon {
+		width: 75%;
+	}
+
+	.s2Title {
+		font-size: 24px;
+		margin: auto;
+	}
+
+	.s2Desc {
+		font-size: 12px;
+		margin-top: 0;
+		margin-left: 0;
+	}
+
+	.leftC {
+		margin-left: -50px;
+		height: 270px;
+	}
+
+	.readMore {
+		font-size: 30px;
+		margin-top: 2px;
+	}
+
+	.mTitle {
+		font-size: 45px;
+		margin-top: -70px;
+	}
+
+	.mDesc {
+		font-size: 16px;
+		margin-top: -30px;
+	}
+
+	.sDesc {
+		font-size: 18px;
+		margin-top: -30px;
+	}
+
+	.mBtn {
+		font-size: 16px;
+		padding: 8px 10px;
+		margin-bottom: 60px;
+		margin-top: -150px;
+	}
+
+	.rightS {
+		margin-top: -20px;
+	}
+
+	.rightS .imgCon {
+		margin-top: -50px;
+		width: 60%;
+	}
+}
