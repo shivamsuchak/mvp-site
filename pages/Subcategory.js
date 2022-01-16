@@ -1,32 +1,32 @@
-import styles from "../../styles/CardBox.module.css";
+import styles from "../styles/CardBox.module.css";
 import axios from "axios";
 import { useState } from "react";
-import { FaTimesCircle, FaCheckCircle, IoIosSend } from "react-icons/fa";
-import ls from 'local-storage';
 import Link from "next/link";
 import { AiOutlineSend } from "react-icons/ai";
-const Enterprising = ({ jobs }) => {
-  const [subjobs, setSubjobs] = useState(null);
-  let subcat = [];
-  //let id = Math.floor(Math.random() * jobs.length + 1);
+
+import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
+import ls from "local-storage";
+const BlogIndex = () => {
   let id = 0;
-  let len = jobs.length;
+  let arrid = [];
   let mname = "";
-  let arrlist = null;
-  console.log(jobs);
-  const addToDB = async (subcategory, kind) => {
-    // if (kind === "like") console.log(subcategory, "Enterprising");
+  let alljobslist = null
+  let subjobs = ls.get("subjobs");
+  console.log(subjobs);
+  let len = Object.keys(subjobs).length;
+  console.log(len)
+  const addAllJobs = async (arrid, kind) => {
+    // if (kind === "like") console.log(subcategory, "Social");
     if (kind === "like") {
       await axios
-        .post("http://www.hellocareer.tk:8000/jobs/stage/two", {
-          riasec: "Enterprising",
-          q: subcategory,
-        })
+        .post("http://www.hellocareer.tk:8000/jobs/stage/three",{
+            ids: arrid
+          })
         .then((res) => {
           {
-            arrlist = res.data;
-            ls.set("subjobs", arrlist);
-            console.log(ls.get("subjobs"));
+            alljobslist = res.data;
+            ls.set("ids", alljobslist);
+            console.log(ls.get("ids"));
             //console.log(arrlist);
             //setSubjobs(res.data);
           }
@@ -40,22 +40,23 @@ const Enterprising = ({ jobs }) => {
       //.then((data) => console.log(data))
     }
   };
+
   async function changejobs(kind) {
     try {
       if (kind === "like") {
-        subcat.push(jobs[id].subcategory);
+        arrid.push(subjobs[id].id);
         if (id < len) {
           id++;
         }
         if (id === len) {
           console.log("end");
-          console.log(subcat);
-          addToDB(subcat, kind);
+          console.log(arrid);
+          addAllJobs(arrid, kind);
         }
-        document.getElementById("mname").innerHTML = jobs[id].name;
+        document.getElementById("mname").innerHTML = subjobs[id].name;
         mname = document.getElementById("mname").innerHTML;
         document.getElementById("mdescription").innerHTML =
-          jobs[id].description;
+          subjobs[id].description;
       }
 
       if (kind === "dislike") {
@@ -64,60 +65,48 @@ const Enterprising = ({ jobs }) => {
         }
         if (id === len) {
           console.log("end");
-          console.log(subcat);
-          addToDB(subcat, kind);
+          console.log(arrid);
+          addAllJobs(arrid, kind);
         }
-        document.getElementById("mname").innerHTML = jobs[id].name;
+        document.getElementById("mname").innerHTML = subjobs[id].name;
         mname = document.getElementById("mname").innerHTML;
         document.getElementById("mdescription").innerHTML =
-          jobs[id].description;
+          subjobs[id].description;
       }
     } catch (e) {
-      document.getElementById("mname").innerHTML = "End Of S1";
+      document.getElementById("mname").innerHTML = "End Of S2";
       document.getElementById("mdescription").innerHTML = "Thanks For Using HC";
     }
   }
   return (
+    
     <div className={styles.bottomBody}>
-      {console.log(arrlist)}
+      
       <div className={styles.cardContainer}>
         {/* <a href="#dislike"><i className="opt fa fa-times-circle"></i></a> */}
-        
         <FaTimesCircle
           onClick={() => changejobs("dislike")}
           className={[styles.options, styles.cross_opt].join(" ")}
         />
         <div className={styles.card}>
           <h1 className={styles.name} id="mname">
-            {jobs[id].name}
+            {subjobs[id].name}
           </h1>
           <p className={styles.cardAbt} id="mdescription">
-            {jobs[id].description}
+            {subjobs[id].description}
           </p>
         </div>
         <FaCheckCircle
           onClick={() => changejobs("like")}
           className={[styles.options, styles.check_opt].join(" ")}
         />
-         
+        <Link href={"/Alljobs"} className={styles.card} >
+            <a className={styles.options} style={{marginLeft: "230%"}}><AiOutlineSend/></a>
+        </Link>
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
       </div>
-      <Link href={"/Subcategory"} className={styles.card} >
-            <a className={styles.options}><AiOutlineSend/></a>
-          </Link>
     </div>
   );
 };
 
-export const getServerSideProps = async () => {
-  const res = await fetch(
-    "http://www.hellocareer.tk:8000/jobs/riasec/Enterprising"
-  );
-  const jobs = await res.json();
-
-  return {
-    props: { jobs: jobs },
-  };
-};
-
-export default Enterprising;
+export default BlogIndex;

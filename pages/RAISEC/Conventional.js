@@ -1,35 +1,88 @@
 import styles from "../../styles/CardBox.module.css";
-import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
-const Realistic = ({ jobs }) => {
-    let id = Math.floor(Math.random() * jobs.length + 1);
-	let mname = "";
+import axios from "axios";
+import { useState } from "react";
+import { FaTimesCircle, FaCheckCircle, IoIosSend } from "react-icons/fa";
+import ls from 'local-storage';
+import Link from "next/link";
+import { AiOutlineSend } from "react-icons/ai";
+const Conventional = ({ jobs }) => {
+  const [subjobs, setSubjobs] = useState(null);
+  let subcat = [];
+  //let id = Math.floor(Math.random() * jobs.length + 1);
+  let id = 0;
+  let len = jobs.length;
+  let mname = "";
+  let arrlist = null;
   console.log(jobs);
+  const addToDB = async (subcategory, kind) => {
+    // if (kind === "like") console.log(subcategory, "Conventional");
+    if (kind === "like") {
+      await axios
+        .post("http://www.hellocareer.tk:8000/jobs/stage/two", {
+          riasec: "Conventional",
+          q: subcategory,
+        })
+        .then((res) => {
+          {
+            arrlist = res.data;
+            ls.set("subjobs", arrlist);
+            console.log(ls.get("subjobs"));
+            //console.log(arrlist);
+            //setSubjobs(res.data);
+          }
+        })
+        .then(() => {
+          console.log("Added!!");
+          //console.log(arrlist);
+        });
+      //.catch((e) => console.log(`Error: ${e}`))
+
+      //.then((data) => console.log(data))
+    }
+  };
   async function changejobs(kind) {
     try {
       if (kind === "like") {
+        subcat.push(jobs[id].subcategory);
+        if (id < len) {
+          id++;
+        }
+        if (id === len) {
+          console.log("end");
+          console.log(subcat);
+          addToDB(subcat, kind);
+        }
         document.getElementById("mname").innerHTML = jobs[id].name;
         mname = document.getElementById("mname").innerHTML;
-        document.getElementById("mdescription").innerHTML = jobs[id].description;
+        document.getElementById("mdescription").innerHTML =
+          jobs[id].description;
       }
 
       if (kind === "dislike") {
+        if (id < len) {
+          id++;
+        }
+        if (id === len) {
+          console.log("end");
+          console.log(subcat);
+          addToDB(subcat, kind);
+        }
         document.getElementById("mname").innerHTML = jobs[id].name;
         mname = document.getElementById("mname").innerHTML;
-        document.getElementById("mdescription").innerHTML = jobs[id].description;
+        document.getElementById("mdescription").innerHTML =
+          jobs[id].description;
       }
-      id++;
-
-      //addToDB(mname, kind);
-    } catch {
-      document.getElementById("mname").innerHTML = "Error Occured";
-      document.getElementById("mdescription").innerHTML =
-        "Please refresh the browser... A client side error has occured";
+    } catch (e) {
+      document.getElementById("mname").innerHTML = "End Of S1";
+      document.getElementById("mdescription").innerHTML = "Thanks For Using HC";
     }
   }
   return (
     <div className={styles.bottomBody}>
+      {console.log(arrlist)}
       <div className={styles.cardContainer}>
         {/* <a href="#dislike"><i className="opt fa fa-times-circle"></i></a> */}
+        
         <FaTimesCircle
           onClick={() => changejobs("dislike")}
           className={[styles.options, styles.cross_opt].join(" ")}
@@ -46,8 +99,12 @@ const Realistic = ({ jobs }) => {
           onClick={() => changejobs("like")}
           className={[styles.options, styles.check_opt].join(" ")}
         />
+         
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
       </div>
+      <Link href={"/Subcategory"} className={styles.card} >
+            <a className={styles.options}><AiOutlineSend/></a>
+          </Link>
     </div>
   );
 };
@@ -63,4 +120,4 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default Realistic;
+export default Conventional;
