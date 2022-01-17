@@ -13,7 +13,7 @@ const BlogIndex = () => {
   let alljobslist = null
   let subjobs = ls.get("subjobs");
   console.log(subjobs);
-  let len = Object.keys(subjobs).length;
+  let len = ls.get("subjobs")?.length
   console.log(len)
   const addAllJobs = async (arrid, kind) => {
     // if (kind === "like") console.log(subcategory, "Social");
@@ -25,8 +25,10 @@ const BlogIndex = () => {
         .then((res) => {
           {
             alljobslist = res.data;
-            ls.set("ids", alljobslist);
-            console.log(ls.get("ids"));
+            console.log(alljobslist+"sub")
+            ls.set("ids",alljobslist)
+            // ls.set("ids", alljobslist);
+            // console.log(ls.get("ids"));
             //console.log(arrlist);
             //setSubjobs(res.data);
           }
@@ -41,7 +43,7 @@ const BlogIndex = () => {
     }
   };
 
-  async function changejobs(kind) {
+   function changejobs(kind) {
     try {
       if (kind === "like") {
         arrid.push(subjobs[id].id);
@@ -100,7 +102,7 @@ const BlogIndex = () => {
           onClick={() => changejobs("like")}
           className={[styles.options, styles.check_opt].join(" ")}
         />
-        <Link href={"/Alljobs"} className={styles.card} >
+        <Link href="/Alljobs" className={styles.card} >
             <a className={styles.options} style={{marginLeft: "230%"}}><AiOutlineSend/></a>
         </Link>
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}

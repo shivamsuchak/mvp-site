@@ -10,35 +10,20 @@ const Investigative = ({ jobs }) => {
   let subcat = [];
   //let id = Math.floor(Math.random() * jobs.length + 1);
   let id = 0;
-  let len = jobs.length;
+  let len = jobs?.length;
   let mname = "";
   let arrlist = null;
   console.log(jobs);
   const addToDB = async (subcategory, kind) => {
     // if (kind === "like") console.log(subcategory, "Investigative");
-    if (kind === "like") {
-      await axios
+ 
+    const res=  await axios
         .post("http://www.hellocareer.tk:8000/jobs/stage/two", {
           riasec: "Investigative",
           q: subcategory,
         })
-        .then((res) => {
-          {
-            arrlist = res.data;
-            ls.set("subjobs", arrlist);
-            console.log(ls.get("subjobs"));
-            //console.log(arrlist);
-            //setSubjobs(res.data);
-          }
-        })
-        .then(() => {
-          console.log("Added!!");
-          //console.log(arrlist);
-        });
-      //.catch((e) => console.log(`Error: ${e}`))
-
-      //.then((data) => console.log(data))
-    }
+    console.log("response"+res?.data)
+    ls.set("subjobs",res.data)
   };
   async function changejobs(kind) {
     try {
@@ -102,7 +87,7 @@ const Investigative = ({ jobs }) => {
          
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
       </div>
-      <Link href={"/Subcategory"} className={styles.card} >
+      <Link href="/Subcategory" className={styles.card} >
             <a className={styles.options}><AiOutlineSend/></a>
           </Link>
     </div>

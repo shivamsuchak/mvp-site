@@ -10,7 +10,7 @@ const Realistic = ({ jobs }) => {
   let subcat = [];
   //let id = Math.floor(Math.random() * jobs.length + 1);
   let id = 0;
-  let len = jobs.length;
+  let len = jobs?.length;
   let mname = "";
   let arrlist = null;
   console.log(jobs);
@@ -102,7 +102,7 @@ const Realistic = ({ jobs }) => {
          
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
       </div>
-      <Link href={"/Subcategory"} className={styles.card} >
+      <Link href="/Subcategory" className={styles.card} >
             <a className={styles.options}><AiOutlineSend/></a>
           </Link>
     </div>

@@ -13,8 +13,8 @@ const BlogIndex = () => {
   let likedIds = null
   let Alljobs = ls.get("ids");
   console.log(Alljobs);
-  let len = Object.keys(Alljobs).length;
-  console.log(len)
+  let len = Alljobs?.length;
+  // console.log(len)
   async function changejobs(kind) {
     try {
       if (kind === "like") {
@@ -76,7 +76,7 @@ const BlogIndex = () => {
           onClick={() => changejobs("like")}
           className={[styles.options, styles.check_opt].join(" ")}
         />
-        <Link href={"/Reports"} className={styles.card} >
+        <Link href="/Reports" className={styles.card} >
             <a className={styles.options} style={{marginLeft: "230%"}}><AiOutlineSend/></a>
         </Link>
         {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
