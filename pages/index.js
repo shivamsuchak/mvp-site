@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar></Navbar>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Select <a href="/">RAISEC</a>
+          Select <link href="/">RAISEC</link>
         </h1>
         <p className={styles.description}> </p>
         <div className={styles.grid}>
@@ -70,12 +70,12 @@ export default function Home() {
           is a 30 -60 min process where the outcome will be the users top most
           liked jobs! <br />
           <br />
-          Please note We are NOT a career counseling platform, we don't suggest
+          Please note We are NOT a career counseling platform, we dont suggest
           you take up the career you land on after the process, this is an
           experience which helps you understand the different options that are
           available and what your USP[unique selling proposition] is! If you
           know which category fits your characteristic, go ahead and select the
-          option If you don't know, not a problem please take a RIASEC test
+          option If you dont know, not a problem please take a RIASEC test
           <a
             style={{ color: "blue" }}
             href="https://www.onlinepersonalitytests.org/riasec/"
@@ -88,8 +88,8 @@ export default function Home() {
         <h3>
           <h1>Realistic</h1> Realistic having or showing a sensible and practical idea of what can
           be achieved or expected.An example of realistic is a person who knows
-          his own limitations and isn't going to expect to be an amazing opera
-          singer when he can't even carry a tune.<h1> Investigative </h1> An investigative
+          his own limitations and isnt going to expect to be an amazing opera
+          singer when he cant even carry a tune.<h1> Investigative </h1> An investigative
           personality type tends to be analytical, intellectual and scholarly.
           They enjoy research, mathematical or scientific activities..
           <h1>Analytical</h1> An analytical person wants to gather and consider

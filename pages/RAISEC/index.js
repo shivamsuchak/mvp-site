@@ -21,11 +21,11 @@ const BlogIndex = ({ content }) => {
 						href={"/blogs/" + data.title.trim()}
 						key={data.title.trim()}
 					>
-						<a>
+						
 							<h3 className="border-4 border-green-500 rounded-2xl px-6 py-3 m-3">
 								{data.title}
 							</h3>
-						</a>
+						
 					</Link>
 				))}
 			</div>

@@ -32,7 +32,7 @@ const Report = () => {
 
         <main className={styles.main}>
           {names &&
-            names.map((namess) => <h2 className={styles.card}>{namess}</h2>)}
+            names.map((namess) => <h2 key={namess.id} className={styles.card}>{namess}</h2>)}
           <br />
           <h2 style={{ textAlign: "center" }}>What Next?</h2>
           <h3 style={{ textAlign: "center" }}>
