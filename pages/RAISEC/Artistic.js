@@ -24,6 +24,7 @@ const Artistic = ({ jobs }) => {
         })
     console.log("response"+res?.data)
     ls.set("subjobs",res.data)
+    
   };
   async function changejobs(kind) {
     try {

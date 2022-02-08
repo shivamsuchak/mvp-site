@@ -7,6 +7,8 @@ import Link from "next/link";
 import { AiOutlineSend } from "react-icons/ai";
 const Realistic = ({ jobs }) => {
   const [subjobs, setSubjobs] = useState(null);
+  console.log(jobs)
+  // const [subjobs, setSubjobs] = useState([]);
   let subcat = [];
   //let id = Math.floor(Math.random() * jobs.length + 1);
   let id = 0;
@@ -25,8 +27,9 @@ const Realistic = ({ jobs }) => {
         .then((res) => {
           {
             arrlist = res.data;
+            console.log(arrlist)
             ls.set("subjobs", arrlist);
-            console.log(ls.get("subjobs"));
+            // console.log(ls.get("subjobs"));
             //console.log(arrlist);
             //setSubjobs(res.data);
           }
@@ -77,35 +80,53 @@ const Realistic = ({ jobs }) => {
       document.getElementById("mdescription").innerHTML = "Thanks For Using HC";
     }
   }
+
+  const [index, setIndex] = useState(0);
+  const [subCategoryArr, setSubCategoryArr] = useState([]);
+  console.log(subCategoryArr)
+  const onLiked = ()=>{
+    setIndex(index+1);
+    setSubCategoryArr((oldArr)=>oldArr.concat(jobs[index].subcategory));
+  }
+  const onDisLiked = ()=>{
+    setIndex(index+1);
+  }
   return (
-    <div className={styles.bottomBody}>
-      {console.log(arrlist)}
-      <div className={styles.cardContainer}>
-        {/* <a href="#dislike"><i className="opt fa fa-times-circle"></i></a> */}
-        
-        <FaTimesCircle
-          onClick={() => changejobs("dislike")}
-          className={[styles.options, styles.cross_opt].join(" ")}
-        />
-        <div className={styles.card}>
-          <h1 className={styles.name} id="mname">
-            {jobs[id].name}
-          </h1>
-          <p className={styles.cardAbt} id="mdescription">
-            {jobs[id].description}
-          </p>
-        </div>
-        <FaCheckCircle
-          onClick={() => changejobs("like")}
-          className={[styles.options, styles.check_opt].join(" ")}
-        />
-         
-        {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
-      </div>
-      <Link href="/Subcategory" className={styles.card} >
-            <a className={styles.options}><AiOutlineSend/></a>
-          </Link>
+    <div>
+      <button onClick={onDisLiked}>Dislike</button>
+      <h1>{jobs[index].name}</h1>
+      <p>{jobs[index].description}</p>
+      <button onClick={onLiked}>Liked</button>
     </div>
+
+    // <div className={styles.bottomBody}>
+    //   {console.log(arrlist)}
+    //   <div className={styles.cardContainer}>
+    //     {/* <a href="#dislike"><i className="opt fa fa-times-circle"></i></a> */}
+        
+    //     <FaTimesCircle
+    //       onClick={() => changejobs("dislike")}
+    //       className={[styles.options, styles.cross_opt].join(" ")}
+    //     />
+    //     <div className={styles.card}>
+    //       <h1 className={styles.name} id="mname">
+    //         {jobs[id].name}
+    //       </h1>
+    //       <p className={styles.cardAbt} id="mdescription">
+    //         {jobs[id].description}
+    //       </p>
+    //     </div>
+    //     <FaCheckCircle
+    //       onClick={() => changejobs("like")}
+    //       className={[styles.options, styles.check_opt].join(" ")}
+    //     />
+         
+    //     {/* <a href="#like"><i className="opt fa fa-check-circle"></i></a> */}
+    //   </div>
+    //   <Link href="/Subcategory" className={styles.card} >
+    //         <a className={styles.options}><AiOutlineSend/></a>
+    //       </Link>
+    // </div>
   );
 };
 

@@ -7,10 +7,11 @@ import { AiOutlineSend } from "react-icons/ai";
 import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 import ls from "local-storage";
 const BlogIndex = () => {
-  let id = 0;
+  const [id, setId] = useState(0)
+  
   let arrid = [];
   let mname = "";
-  let likedIds = null
+  
   let Alljobs = ls.get("ids");
   console.log(Alljobs);
   let len = Alljobs?.length;
